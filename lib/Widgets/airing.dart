@@ -59,7 +59,8 @@ class _airingSelectorState extends State<Airing> {
     fetchData();
     // TODO: implement build
     if (this.anime != null) {
-      return ListView.builder(
+      return Container(
+        child: ListView.builder(
           itemCount: anime.length,
           itemBuilder: (BuildContext context, int index) {
             final ani = this.anime[index];
@@ -67,7 +68,7 @@ class _airingSelectorState extends State<Airing> {
                 margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 20),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical:10),
                 decoration: BoxDecoration(
-                  color: Colors.pink
+                  color: Colors.grey
                 ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +84,7 @@ class _airingSelectorState extends State<Airing> {
                         children: <Widget>[
                           Text(ani['title']['romaji'],
                               style: TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                   fontSize: 15.0,
                                   fontWeight: FontWeight.bold)),
                           SizedBox(height: 5.0),
@@ -91,7 +92,7 @@ class _airingSelectorState extends State<Airing> {
                             width: MediaQuery.of(context).size.width * 0.45,
                             child: Text(ani['title']['english'],
                                 style: TextStyle(
-                                    color: Colors.grey,
+                                    color: Colors.black,
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.bold)),
                           ),
@@ -107,7 +108,8 @@ class _airingSelectorState extends State<Airing> {
                   )
                 ]));
           },
-        );
+        )
+      );
     } else {
       return CircularProgressIndicator();
     }
