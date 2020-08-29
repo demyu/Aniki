@@ -67,7 +67,7 @@ class _airingSelectorState extends State<Airing> {
         itemBuilder: (BuildContext context, int index) {
           final ani = this.anime[index];
           return Container(
-              margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 20),
+              margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 10, left: 5),
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               decoration: BoxDecoration(
                   color: Colors.pink[300],
