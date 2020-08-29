@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
             child: Container(decoration: BoxDecoration(color: Colors.white
             ),
-                    
+                    child: Airing(),
                     ),
             
             )

@@ -4,16 +4,16 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
-class airing extends StatefulWidget {
+class Airing extends StatefulWidget {
   @override
   _airingSelectorState createState() => _airingSelectorState();
 }
 
-class _airingSelectorState extends State<airing> {
+class _airingSelectorState extends State<Airing> {
   var anime;
   String query = """
         query {
-          Page(page: 1, perPage: 1){
+          Page(page: 1, perPage: 2){
     pageInfo {
       total
       currentPage
@@ -39,11 +39,16 @@ class _airingSelectorState extends State<airing> {
   fetchData() async {
     var url = 'https://graphql.anilist.co';
     var response = await http.post(url, body: {'query': query});
-    print(response.body);
-    if (response.statusCode == 200) {
-      print(response.body);
-      var resp = json.decode(response.body);
-      this.anime = resp["media"];
+
+    if (response.statusCode >= 200 && response.statusCode <= 299) {
+      setState(() {
+        String test = response.body;
+        int num = test.indexOf("media");
+        String y = "{\"";
+        y += test.substring(num, test.length - 2);
+        Map<String, dynamic> map = json.decode(y);
+        this.anime = map['media'];
+      });
     } else {
       print("Error");
     }
@@ -53,12 +58,58 @@ class _airingSelectorState extends State<airing> {
   Widget build(BuildContext context) {
     fetchData();
     // TODO: implement build
-    return ListView.builder(
-      itemCount: this.anime.length,
-      itemBuilder: (BuildContext context, int index) {
-        final ani = this.anime[index];
-        return Text(ani["id"]);
-      },
-    );
+    if (this.anime != null) {
+      return ListView.builder(
+          itemCount: anime.length,
+          itemBuilder: (BuildContext context, int index) {
+            final ani = this.anime[index];
+            return Container(
+                margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical:10),
+                decoration: BoxDecoration(
+                  color: Colors.pink
+                ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Image.network(
+                        ani['coverImage']['medium'],
+                      ),
+                      SizedBox(width: 10.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(ani['title']['romaji'],
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(height: 5.0),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.45,
+                            child: Text(ani['title']['english'],
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      IconButton(
+                          icon: Icon(Icons.arrow_forward), onPressed: () {})
+                    ],
+                  )
+                ]));
+          },
+        );
+    } else {
+      return CircularProgressIndicator();
+    }
   }
 }

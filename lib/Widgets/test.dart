@@ -12,11 +12,11 @@ main(List<String> args) {
   fetchData();
 }
 
-int page = 2;
+int page = 1;
 
 String query = """
         query {
-          Page(page: $page, perPage: 1){
+          Page(page: $page, perPage: 2){
     pageInfo {
       total
       currentPage
@@ -44,13 +44,15 @@ String query = """
     
     var url = 'https://graphql.anilist.co';
     var response = await http.post(url, body: {'query' : query});
-    print(response.body);
 
-    if(response.statusCode == 200){
-      print(response.body);
-      var resp = json.decode(response.body);
-      var anime = resp["media"];
-
+    if(response.statusCode >= 200 && response.statusCode<=299){
+      String test = response.body;
+      int num = test.indexOf("media");
+      String y = "{\"";
+      y +=test.substring(num, test.length-2);
+      Map<String,dynamic> map = json.decode(y);
+      var anime = map['media'];
+      print(anime[0]);
     }else{
       print("Error");
     }
