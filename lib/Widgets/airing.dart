@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
+import 'animePage.dart';
 import 'dart:convert';
 
 class Airing extends StatefulWidget {
@@ -31,6 +32,7 @@ class _airingSelectorState extends State<Airing> {
       coverImage{
         medium
       }
+      bannerImage
     }
   }
         }
@@ -60,56 +62,60 @@ class _airingSelectorState extends State<Airing> {
     // TODO: implement build
     if (this.anime != null) {
       return Container(
-        child: ListView.builder(
-          itemCount: anime.length,
-          itemBuilder: (BuildContext context, int index) {
-            final ani = this.anime[index];
-            return Container(
-                margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 20),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical:10),
-                decoration: BoxDecoration(
-                  color: Colors.grey
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Image.network(
-                        ani['coverImage']['medium'],
-                      ),
-                      SizedBox(width: 10.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(ani['title']['romaji'],
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold)),
-                          SizedBox(height: 5.0),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.45,
-                            child: Text(ani['title']['english'],
+          child: ListView.builder(
+        itemCount: anime.length,
+        itemBuilder: (BuildContext context, int index) {
+          final ani = this.anime[index];
+          return Container(
+              margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                  color: Colors.pink[300],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  )),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Image.network(
+                          ani['coverImage']['medium'],
+                        ),
+                        SizedBox(width: 10.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(ani['title']['romaji'],
                                 style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                     fontSize: 15.0,
                                     fontWeight: FontWeight.bold)),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(Icons.arrow_forward), onPressed: () {})
-                    ],
-                  )
-                ]));
-          },
-        )
-      );
+                            SizedBox(height: 5.0),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
+                              child: Text(ani['title']['english'],
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.arrow_forward),
+                          color: Colors.white,
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani))),
+                        )
+                      ],
+                    )
+                  ]));
+        },
+      ));
     } else {
       return CircularProgressIndicator();
     }
