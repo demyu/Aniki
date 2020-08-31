@@ -26,12 +26,34 @@ class _airingSelectorState extends State<Airing> {
       title {
         romaji
         english
-        native
-        userPreferred
       }
+      characters{
+        edges{
+          node{
+            name{
+              full
+            }
+            image{
+              medium
+            }
+          }
+          voiceActors(language: JAPANESE) {
+            name {
+              full
+            }
+            image{
+              medium
+            }
+          }
+          
+        }
+      }
+      description
       coverImage{
+        large
         medium
       }
+      status
       bannerImage
     }
   }
@@ -112,7 +134,7 @@ class _airingSelectorState extends State<Airing> {
                         IconButton(
                           icon: Icon(Icons.arrow_forward),
                           color: Colors.white,
-                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani))),
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani,))),
                         )
                       ],
                     )

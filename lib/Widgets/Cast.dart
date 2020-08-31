@@ -1,38 +1,26 @@
-Row(
-            children: <Widget>[
-              SizedBox(
-                width: 30,
-                child: Image.network(widget.anime['coverImage']['medium']),
-              ),
-              RichText(
-                text: TextSpan(children: [
-                  TextSpan(
-                      text: widget.anime['title']['romaji'],
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(
-                      text: widget.anime['description'],
-                      style: TextStyle(fontSize: 5)),
-                ]),
-              )
-            ],
-          )
+import 'dart:ui';
+import 'package:aniki_app/Widgets/bannerImage.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Cast extends StatefulWidget{
+
+  var anime;
+
+  Cast({this.anime});
+
+  _CastState createState() => _CastState();
+}
 
 
-          
-          child: ListView.builder(
-                  itemCount: widget.anime['characters'].length,
-                  itemBuilder: (BuildContext context, int index) {
-                  
-                  final character = widget.anime['characters']['edges'][0]['node']['name']['full']
-                  final voiceActor = widget.anime['characters']['edges'][0]['voiceActors'][0]['name']['full']
-                  },
-                )
+class _CastState extends State<Cast>{
 
 
-
-                Expanded(
-            child: Container(
-                child: ListView.builder(
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+              child: ListView.builder(
               itemCount: widget.anime['characters']['edges'].length,
               itemBuilder: (BuildContext context, int index) {
                 final character =
@@ -71,5 +59,7 @@ Row(
                       ],
                     ));
               },
-            )),
-          )
+            )
+            );
+  }
+}

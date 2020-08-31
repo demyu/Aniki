@@ -1,4 +1,9 @@
+import 'dart:ui';
+import 'package:aniki_app/Widgets/bannerImage.dart';
+import 'package:aniki_app/Widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'Cast.dart';
+import 'bannerImage.dart';
 
 class AnimePage extends StatefulWidget {
   var anime;
@@ -11,18 +16,18 @@ class AnimePage extends StatefulWidget {
 class _AnimePageState extends State<AnimePage> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.anime['title']['romaji']),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(top: 25, bottom: 0),
-          child: 
-            Image.network(widget.anime['bannerImage'].toString())
-            ),
+        appBar: AppBar(
+          title: Text(widget.anime['title']['romaji']),
         ),
-      );
+        backgroundColor: Colors.grey,
+        body: Container(
+          child: Column(
+              children: <Widget>[
+                BannerImage(anime: widget.anime),
+                TitleImg(anime:widget.anime),
+              ]),
+        ),
+        );
   }
 }

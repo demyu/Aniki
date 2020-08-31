@@ -28,12 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(children: <Widget>[
         categorySelector(),
         Expanded(
-            child: Container(decoration: BoxDecoration(color: Colors.white
-            ),
-              child: Airing(),
-              ),
-            
-            )
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white),
+            child: Airing(),
+          ),
+        )
       ]),
     );
   }
