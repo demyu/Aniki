@@ -36,7 +36,7 @@ class _SearchAnimeState extends State<SearchAnime> {
       });
     } else {
       print("Error");
-      print(response.body.toString());
+      print(response.body.toString());  
     }
   }
 

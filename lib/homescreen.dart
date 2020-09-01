@@ -72,13 +72,7 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    if(query != ""){
+   if(query != ""){
       var search = query.toString();
     var quer = """
         query {
@@ -129,8 +123,10 @@ class DataSearch extends SearchDelegate<String> {
   """;
     return SearchAnime(quer: quer);
   }
-    
-    return Text(query); 
-  
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Text(""); 
   }
 }
