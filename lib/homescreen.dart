@@ -36,36 +36,49 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       })
             ],
-            bottom: TabBar(tabs: [
+            bottom: TabBar(tabs: <Widget>[
               Tab(
-                child: Text(
-                  'Watching',
-                  style: TextStyle(
-                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
+                child: Column(
+                  children: [
+                    Text("Watching",
+                        style: TextStyle(
+                          height: 3,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
                 ),
               ),
               Tab(
-                child: Text(
-                  'Airing',
-                  style: TextStyle(
-                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
+                child: Column(
+                  children: [
+                    Text("Airing",
+                        style: TextStyle(
+                          height: 3,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
                 ),
               ),
               Tab(
-                child: Text(
-                  'Next Season',
-                  style: TextStyle(
-                    height: 3,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  children: [
+                    Text("Next Season",
+                        style: TextStyle(
+                          height: 3,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
                 ),
               ),
               Tab(
-                child: Text(
-                  'Trending',
-                  style: TextStyle(
-                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
+                child: Column(
+                  children: [
+                    Text("Trending",
+                        style: TextStyle(
+                          height: 3,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ],
                 ),
               ),
             ]),
