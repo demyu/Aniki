@@ -54,6 +54,7 @@ class _TitleState extends State<TitleImg> {
                   fontStyle: FontStyle.normal,
                   fontSize: 17,
                 ),
+
               ),
               TextSpan(
                 text: "\t" + widget.anime['description'],
