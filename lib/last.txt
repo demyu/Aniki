@@ -29,10 +29,8 @@ Row(
                 )
 
 
-
-                Expanded(
-            child: Container(
-                child: ListView.builder(
+Container(
+              child: ListView.builder(
               itemCount: widget.anime['characters']['edges'].length,
               itemBuilder: (BuildContext context, int index) {
                 final character =
@@ -71,5 +69,5 @@ Row(
                       ],
                     ));
               },
-            )),
-          )
+            )
+            );

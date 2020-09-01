@@ -14,8 +14,7 @@ class _TitleState extends State<TitleImg> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Expanded(
-      child: Container(
+    return Container(
       color: Colors.red[350],
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30.0),
       decoration: BoxDecoration(
@@ -67,6 +66,6 @@ class _TitleState extends State<TitleImg> {
           ))
         ],
       ),
-    ));
+    );
   }
 }
