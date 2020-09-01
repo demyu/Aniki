@@ -28,8 +28,10 @@ class _AnimePageState extends State<AnimePage> {
           children: [
             BannerImage(anime: widget.anime),
             TitleImg(anime: widget.anime),
+
             SizedBox(height: 100),
             Container(
+
                 child: Cast(
                   anime: widget.anime,
                 ),

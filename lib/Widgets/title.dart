@@ -14,6 +14,7 @@ class _TitleState extends State<TitleImg> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return Container(
       color: Colors.red[350],
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30.0),
@@ -44,28 +45,23 @@ class _TitleState extends State<TitleImg> {
               TextSpan(
                 text: "Status: ",
                 style: GoogleFonts.roboto(
+
                     fontStyle: FontStyle.normal,
                     fontSize: 17,
-                    color: Colors.black),
-              ),
-              TextSpan(
-                text: "Status: " + widget.anime['status'] + "\n",
-                style: GoogleFonts.roboto(
-                  fontStyle: FontStyle.normal,
-                  fontSize: 17,
+                  ),
                 ),
-              ),
-              TextSpan(
-                text: "\t" + widget.anime['description'],
-                style: GoogleFonts.roboto(
-                    fontStyle: FontStyle.normal,
-                    fontSize: 15,
-                    color: Colors.black),
-              ),
-            ]),
-          ))
-        ],
-      ),
-    );
+                TextSpan(
+                  text: "\t" + widget.anime['description'],
+                  style: GoogleFonts.roboto(
+                      fontStyle: FontStyle.normal,
+                      fontSize: 8,
+                      color: Colors.black),
+                ),
+              ]),
+            ))
+          ],
+        ),
+      )
+    ]);
   }
 }
