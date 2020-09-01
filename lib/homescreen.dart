@@ -53,8 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: TabBarView(
             children: [
-              Airing(),
               Text("airingList"),
+              Airing(),
               Text("nextSeasonList"),
               Text("trendingList"),
             ],
