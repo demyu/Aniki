@@ -18,11 +18,11 @@ class _TitleState extends State<TitleImg> {
       color: Colors.red[350],
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30.0),
       decoration: BoxDecoration(
-                  color: Colors.pink[300],
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                  ),
+        color: Colors.pink[300],
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
       child: Row(
         children: <Widget>[
           SizedBox(

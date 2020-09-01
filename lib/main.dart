@@ -12,7 +12,7 @@ class Aniki extends StatelessWidget {
     return MaterialApp(
       title: 'Aniki',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.blue),
+      theme: ThemeData(primaryColor: Colors.grey[900]),
       home: HomeScreen(),
     );
   }
