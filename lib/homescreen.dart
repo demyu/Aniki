@@ -8,32 +8,57 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isSearching = false;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.white,
-          onPressed: () {},
-        ),
-        title: Text('Aniki'),
-        elevation: 0.0,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.search), color: Colors.white, onPressed: () {})
-        ],
-      ),
-      body: Column(children: <Widget>[
-        categorySelector(),
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(color: Colors.white),
-            child: Airing(),
+    return DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            actions: <Widget>[
+              isSearching
+                  ? IconButton(
+                      icon: Icon(Icons.cancel),
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          this.isSearching = !this.isSearching;
+                        });
+                      })
+                  : IconButton(
+                      icon: Icon(Icons.search),
+                      color: Colors.white,
+                      onPressed: () {
+                        setState(() {
+                          this.isSearching = !this.isSearching;
+                        });
+                      })
+            ],
+            bottom: TabBar(tabs: [
+              Tab(text: 'Watching'),
+              Tab(text: 'Airing'),
+              Tab(text: 'Next Season'),
+              Tab(text: 'Trending'),
+            ]),
+            title: !isSearching
+                ? Text('Aniki')
+                : TextField(
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                        icon: Icon(Icons.search),
+                        hintText: 'Whats On Your Mind',
+                        hintStyle: TextStyle(color: Colors.white)),
+                  ),
           ),
-        )
-      ]),
-    );
+          body: TabBarView(
+            children: [
+              Text("airingList"),
+              Airing(),
+              Text("nextSeasonList"),
+              Text("trendingList"),
+            ],
+          ),
+        ));
   }
 }
