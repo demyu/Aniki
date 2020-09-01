@@ -38,19 +38,35 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             bottom: TabBar(tabs: [
               Tab(
-                  child: Marquee(
-                text: 'Watching      ',
-              )),
-              Tab(
-                child: Text('Airing'),
-              ),
-              Tab(
-                child: Marquee(
-                  text: 'Next Season      ',
+                child: Text(
+                  'Watching',
+                  style: TextStyle(
+                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
                 ),
               ),
               Tab(
-                child: Text('Trending'),
+                child: Text(
+                  'Airing',
+                  style: TextStyle(
+                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Next Season',
+                  style: TextStyle(
+                    height: 3,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Trending',
+                  style: TextStyle(
+                      height: 3, fontSize: 10, fontWeight: FontWeight.bold),
+                ),
               ),
             ]),
             title: !isSearching
