@@ -14,7 +14,6 @@ class Cast extends StatefulWidget {
 class _CastState extends State<Cast> {
   @override
   Widget build(BuildContext context) {
-   
     return ListView.builder(
       itemCount: widget.anime['characters']['edges'].length,
       itemBuilder: (BuildContext context, int index) {
@@ -23,7 +22,6 @@ class _CastState extends State<Cast> {
             widget.anime['characters']['edges'][index]['voiceActors'][0];
 
         return Container(
-            padding: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
@@ -34,22 +32,58 @@ class _CastState extends State<Cast> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Image.network(character['image']['medium']),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                            image: DecorationImage(
+                                image:
+                                    NetworkImage(character['image']['medium']),
+                                fit: BoxFit.cover))),
                     SizedBox(
-                      width: 10,
+                      width: 20,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(character['name']['full'],
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.bold)),
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(voiceActor['name']['full'],
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        voiceActor['image']['medium']),
+                                    fit: BoxFit.cover))),
+                      ])
+                    ]),
               ],
             ));
       },
