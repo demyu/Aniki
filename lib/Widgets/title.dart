@@ -25,6 +25,9 @@ class _TitleState extends State<TitleImg> {
             child: Column(
               children: [
                 Image.network(widget.anime['coverImage']['large']),
+                SizedBox(
+                  height:30
+                ),
                 Expanded(
                     child: RichText(
                   text: TextSpan(children: [
