@@ -55,6 +55,22 @@ class _airingSelectorState extends State<Airing> {
       }
       status
       bannerImage
+      recommendations {
+        edges {
+          node {
+            mediaRecommendation {
+              id
+              title{
+                romaji
+              }
+              coverImage{
+                medium
+              }
+            }
+
+          }
+        }
+    }
     }
   }
         }

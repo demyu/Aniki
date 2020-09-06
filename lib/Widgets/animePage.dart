@@ -21,25 +21,16 @@ class _AnimePageState extends State<AnimePage> {
         title: Text(widget.anime['title']['romaji']),
       ),
       backgroundColor: Colors.grey,
-      body: Stack(children: [
-        SingleChildScrollView(
-            child: Container(
-                child: Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             BannerImage(anime: widget.anime),
             TitleImg(anime: widget.anime),
-
-            SizedBox(height: 100),
-            Container(
-
-                child: Cast(
-                  anime: widget.anime,
-                ),
-                height: 300,
-                color: Colors.white)
-          ],
-        ))),
-      ]),
+            
+          ]
+        ),
+      )
+      
     );
   }
 }
