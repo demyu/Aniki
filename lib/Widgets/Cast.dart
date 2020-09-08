@@ -14,7 +14,12 @@ class Cast extends StatefulWidget {
 class _CastState extends State<Cast> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cast"),
+        backgroundColor: Colors.grey,
+      ),
+      body: ListView.builder(
       itemCount: widget.anime['characters']['edges'].length,
       itemBuilder: (BuildContext context, int index) {
         final character = widget.anime['characters']['edges'][index]['node'];
@@ -22,17 +27,21 @@ class _CastState extends State<Cast> {
             widget.anime['characters']['edges'][index]['voiceActors'][0];
 
         return Container(
-            decoration: BoxDecoration(
+          margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 1, left: 1),
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          decoration: BoxDecoration(
+              color: Colors.pink[300],
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
-              ),
-            ),
-            child: Row(
+          ),),
+          child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(
                   children: <Widget>[
                     Container(
+                        height: 100,
+                        width: 20,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(
                               Radius.circular(20),
@@ -42,7 +51,7 @@ class _CastState extends State<Cast> {
                                     NetworkImage(character['image']['medium']),
                                 fit: BoxFit.cover))),
                     SizedBox(
-                      width: 20,
+                      width: 5,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,9 +80,11 @@ class _CastState extends State<Cast> {
                           ],
                         ),
                         SizedBox(
-                          width: 20,
+                          width: 5,
                         ),
                         Container(
+                          height:100,
+                          width:20,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
@@ -85,8 +96,10 @@ class _CastState extends State<Cast> {
                       ])
                     ]),
               ],
-            ));
+            )
+        );
       },
+    ),
     );
   }
 }
