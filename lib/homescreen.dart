@@ -9,9 +9,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  int selectedIndex = 0;
+    final List<String> categories = [
+      'Watching',
+      'Airing',
+      'Next Season',
+      'Trending'
+    ];
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -31,13 +40,49 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Column(children: <Widget>[
-        categorySelector(),
-        Expanded(
+        Container(
+          height: 90.0,
+          color: Theme.of(context).primaryColor,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30.0),
+                      child: Text(
+                        categories[index],
+                        style: TextStyle(
+                          color: index == selectedIndex
+                              ? Colors.white
+                              : Colors.white60,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.3,
+                        ),
+                      ),
+                    ));
+              }),
+        ),
+        if(selectedIndex == 0)
+          Text("Watching")
+        else if(selectedIndex == 1)
+          Expanded(
           child: Container(
             decoration: BoxDecoration(color: Colors.white),
             child: Airing(),
           ),
         )
+        else if(selectedIndex ==2 )
+          Text("Next Season")
+        else if(selectedIndex ==3)
+          Text("Trending")
       ]),
     );
   }
@@ -72,9 +117,9 @@ class DataSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-   if(query != ""){
+    if (query != "") {
       var search = query.toString();
-    var quer = """
+      var quer = """
         query {
           Page(page: 1, perPage: 5){
     pageInfo {
@@ -117,16 +162,32 @@ class DataSearch extends SearchDelegate<String> {
       }
       status
       bannerImage
+      recommendations{
+        edges{
+          node{
+            mediaRecommendation{
+              id
+              title{
+                romaji
+              }
+              coverImage{
+                large
+                medium
+              }
+            }
+          }
+        }
+      }
     }
   }
         }
   """;
-    return SearchAnime(quer: quer);
-  }
+      return SearchAnime(quer: quer);
+    }
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Text(""); 
+    return Text("");
   }
 }

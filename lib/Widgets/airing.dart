@@ -105,7 +105,9 @@ class _airingSelectorState extends State<Airing> {
         itemCount: anime.length,
         itemBuilder: (BuildContext context, int index) {
           final ani = this.anime[index];
-          return Container(
+          return GestureDetector(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani,)));},
+            child:Container(
               margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 10, left: 5),
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               decoration: BoxDecoration(
@@ -116,7 +118,8 @@ class _airingSelectorState extends State<Airing> {
                   image: DecorationImage(
                       image: NetworkImage(ani['bannerImage']),
                       fit: BoxFit.cover)),
-              child: Row(
+              child: 
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
@@ -128,34 +131,30 @@ class _airingSelectorState extends State<Airing> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(ani['title']['romaji'],
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.bold)),
-                            SizedBox(height: 5.0),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.45,
+                              child: Text(ani['title']['romaji'],
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13.0,
+                                    fontWeight: FontWeight.bold)),
+                            ),
+                            SizedBox(height: 5.0),
+                            Container(
                               child: Text(ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 15.0,
+                                      fontSize: 13.0,
                                       fontWeight: FontWeight.bold)),
                             ),
                           ],
                         )
                       ],
                     ),
-                    Column(
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.arrow_forward),
-                          color: Colors.white,
-                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani,))),
-                        )
-                      ],
-                    )
-                  ]));
+                    
+                  ]),
+              ),
+          );
         },
       ));
     } else {

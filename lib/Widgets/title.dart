@@ -15,13 +15,12 @@ class _TitleState extends State<TitleImg> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
     return Column(
       children: [
         Container(
             color: Colors.white,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height+50,
+            width: MediaQuery.of(context).size.width,            
+            height: MediaQuery.of(context).size.height+120,
             child: Column(
               children: [
                 Image.network(widget.anime['coverImage']['large']),
