@@ -21,7 +21,7 @@ class _TitleState extends State<TitleImg> {
         Container(
             color: Colors.white,
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height+50,
             child: Column(
               children: [
                 Image.network(widget.anime['coverImage']['large']),
@@ -56,6 +56,9 @@ class _TitleState extends State<TitleImg> {
                 ))
               ],
             )),
+            SizedBox(
+              height:20
+            ),
         GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) => Cast(anime: widget.anime,)));
@@ -64,7 +67,11 @@ class _TitleState extends State<TitleImg> {
               padding: EdgeInsets.all(10),
               width: MediaQuery.of(context).size.width,
               height: 50,
+              decoration: BoxDecoration(
               color: Colors.blue,
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),),
               child: Center(child: Text("Cast")),
             ))
       ],

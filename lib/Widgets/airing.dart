@@ -64,6 +64,7 @@ class _airingSelectorState extends State<Airing> {
                 romaji
               }
               coverImage{
+                large
                 medium
               }
             }
