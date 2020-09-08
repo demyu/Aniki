@@ -48,7 +48,8 @@ class _SearchAnimeState extends State<SearchAnime> {
         itemCount: anime.length,
         itemBuilder: (BuildContext context, int index) {
           final ani = this.anime[index];
-          return GestureDetector(
+          try{
+            return GestureDetector(
             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani,)));},
             child:Container(
               margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 10, left: 5),
@@ -84,6 +85,7 @@ class _SearchAnimeState extends State<SearchAnime> {
                             ),
                             SizedBox(height: 5.0),
                             Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
                               child: Text(ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,
@@ -98,6 +100,12 @@ class _SearchAnimeState extends State<SearchAnime> {
                   ]),
               ),
           );
+          }catch(Exception){
+            if(anime.length == 0)
+              return Center(
+              child: Text("EndLine"),
+            );
+          }
         },
       ));
     } else {

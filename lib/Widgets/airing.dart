@@ -141,6 +141,7 @@ class _airingSelectorState extends State<Airing> {
                             ),
                             SizedBox(height: 5.0),
                             Container(
+                              width: MediaQuery.of(context).size.width * 0.45,
                               child: Text(ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,

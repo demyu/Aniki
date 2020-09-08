@@ -93,12 +93,7 @@ class DataSearch extends SearchDelegate<String> {
   List<Widget> buildActions(BuildContext context) {
     // TODO: implement buildActions
     return [
-      IconButton(
-        icon: Icon(Icons.clear),
-        onPressed: () {
-          var query = "";
-        },
-      )
+     //Stonks
     ];
   }
 
