@@ -14,7 +14,7 @@ class _airingSelectorState extends State<Airing> {
   var anime;
   String query = """
         query {
-          Page(page: 1, perPage: 2){
+          Page(page: 1, perPage: 10){
     pageInfo {
       total
       currentPage
