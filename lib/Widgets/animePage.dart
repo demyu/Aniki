@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:aniki_app/Widgets/RecommendedAnime.dart';
 import 'package:aniki_app/Widgets/bannerImage.dart';
 import 'package:aniki_app/Widgets/title.dart';
 import 'package:flutter/material.dart';
@@ -37,61 +38,29 @@ class _AnimePageState extends State<AnimePage> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 20.0),
               height: 200.0,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(
+                itemCount: 5, 
+                itemBuilder: (BuildContext context, int index){
+                  final poster = widget.anime['recommendations']['edges'][index]['node']['mediaRecommendation']['coverImage']['large'];
+                  final id = widget.anime['recommendations']['edges'][index]['node']['mediaRecommendation']['id'];
+                return GestureDetector(
+                  onTap: () {Navigator.push(context, MaterialPageRoute(builder: (_) => RecommendedAnime(id: id,)));},
+                  child: Container(
                     width: 150.0,
                     height: 100.0,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(widget.anime['recommendations']['edges'][0]['node']['mediaRecommendation']['coverImage']['large']),
+                        image: NetworkImage(poster),
                         fit: BoxFit.cover,
-                      )
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(widget.anime['recommendations']['edges'][1]['node']['mediaRecommendation']['coverImage']['large']),
-                        fit: BoxFit.cover,
-                      )
                     ),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(widget.anime['recommendations']['edges'][2]['node']['mediaRecommendation']['coverImage']['large']),
-                        fit: BoxFit.cover,
-                      )
-                    ),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(widget.anime['recommendations']['edges'][3]['node']['mediaRecommendation']['coverImage']['large']),
-                        fit: BoxFit.cover,
-                      )
-                    ),
-                  ),
-                  Container(
-                    width: 150.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(widget.anime['recommendations']['edges'][4]['node']['mediaRecommendation']['coverImage']['large']),
-                        fit: BoxFit.cover,
-                      )
-                    ),
-                  ),
-                ],
+                );
+                }
+                  
               ),
+             
             ),
           ]),
         ));
