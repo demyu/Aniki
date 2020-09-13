@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -106,8 +107,15 @@ class _airingSelectorState extends State<Airing> {
         itemBuilder: (BuildContext context, int index) {
           final ani = this.anime[index];
           return GestureDetector(
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_) => AnimePage(anime: ani,)));},
-            child:Container(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => AnimePage(
+                            anime: ani,
+                          )));
+            },
+            child: Container(
               margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 10, left: 5),
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               decoration: BoxDecoration(
@@ -116,16 +124,19 @@ class _airingSelectorState extends State<Airing> {
                     Radius.circular(20),
                   ),
                   image: DecorationImage(
-                      image: NetworkImage(ani['bannerImage']),
+                      image: CachedNetworkImageProvider(ani['bannerImage']),
                       fit: BoxFit.cover)),
-              child: 
-                Row(
+              child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Image.network(
-                          ani['coverImage']['medium'],
+                        CachedNetworkImage(
+                          imageUrl: ani['coverImage']['medium'],
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
                         ),
                         SizedBox(width: 10.0),
                         Column(
@@ -134,10 +145,10 @@ class _airingSelectorState extends State<Airing> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.45,
                               child: Text(ani['title']['romaji'],
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.bold)),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13.0,
+                                      fontWeight: FontWeight.bold)),
                             ),
                             SizedBox(height: 5.0),
                             Container(
@@ -152,9 +163,8 @@ class _airingSelectorState extends State<Airing> {
                         )
                       ],
                     ),
-                    
                   ]),
-              ),
+            ),
           );
         },
       ));

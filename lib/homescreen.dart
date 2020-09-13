@@ -1,7 +1,7 @@
 import 'package:aniki_app/Widgets/airing.dart';
 import 'package:aniki_app/Widgets/searchAnime.dart';
 import 'package:flutter/material.dart';
-import 'Widgets/categorySelector.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,11 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.white,
-          onPressed: () {},
-        ),
+        leading: Image.asset('images/LeadingIcon.png', fit: BoxFit.contain,),
         title: Text('Aniki'),
         elevation: 0.0,
         actions: <Widget>[
@@ -71,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }),
         ),
         if(selectedIndex == 0)
-          Text("Watching")
+          Text("Following")
         else if(selectedIndex == 1)
           Expanded(
           child: Container(

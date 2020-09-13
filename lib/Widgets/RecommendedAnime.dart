@@ -92,7 +92,6 @@ class _RecommendedAnimeState extends State<RecommendedAnime> {
       });
     } else {
       print("Error");
-      print(response.statusCode);
     }
   }
 

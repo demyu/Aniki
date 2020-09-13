@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -60,7 +61,7 @@ class _SearchAnimeState extends State<SearchAnime> {
                     Radius.circular(20),
                   ),
                   image: DecorationImage(
-                      image: NetworkImage(ani['bannerImage']),
+                      image: CachedNetworkImageProvider(ani['bannerImage']),
                       fit: BoxFit.cover)),
               child: 
                 Row(
@@ -68,9 +69,11 @@ class _SearchAnimeState extends State<SearchAnime> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Image.network(
-                          ani['coverImage']['medium'],
-                        ),
+                        CachedNetworkImage(
+                  imageUrl: ani['coverImage']['medium'],
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
                         SizedBox(width: 10.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
