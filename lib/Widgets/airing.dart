@@ -39,12 +39,13 @@ class _airingSelectorState extends State<Airing> {
             }
           }
           voiceActors(language: JAPANESE) {
+            id
             name {
               full
             }
             image{
               medium
-            }
+            }  
           }
           
         }

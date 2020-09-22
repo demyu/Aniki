@@ -1,21 +1,46 @@
 import 'dart:ui';
-import 'package:aniki_app/Widgets/Cast.dart';
+import 'package:aniki_app/Classes/DBhelper.dart';
+import 'package:aniki_app/Classes/Va.dart';
+import 'package:aniki_app/Classes/animeClass.dart';
+import 'package:aniki_app/Classes/characters.dart';
+import 'package:aniki_app/Widgets/offlinecast.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TitleImg extends StatefulWidget {
-  var anime;
+class OfflineTitleImage extends StatefulWidget {
+  int id;
 
-  TitleImg({this.anime});
+  OfflineTitleImage({this.id});
 
-  _TitleState createState() => _TitleState();
+  OfflineTitleImageState createState() => OfflineTitleImageState();
 }
 
-class _TitleState extends State<TitleImg> {
+class OfflineTitleImageState extends State<OfflineTitleImage> {
+
+  final DBHelper db = DBHelper();
+  List<AnimeClass> animeclass;
+  AnimeClass theAnime;
+
+  void load() async{
+    animeclass = await db.getAnimeList();
+    for(int x=0; x<animeclass.length; x++){
+      if(animeclass[x].getAnimeId() == widget.id){
+        theAnime = animeclass[x];
+      }
+    }
+    setState(() {
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
+    if(animeclass == null){
+      load();
+      return CircularProgressIndicator();
+    }
+    else
     return Column(
       children: [
         Container(
@@ -26,7 +51,7 @@ class _TitleState extends State<TitleImg> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 CachedNetworkImage(
-                  imageUrl: widget.anime['coverImage']['large'],
+                  imageUrl: theAnime.getLargeImg(),
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
@@ -36,21 +61,21 @@ class _TitleState extends State<TitleImg> {
                     child: RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                          text: widget.anime['title']['romaji'] + "\n" + "\n",
+                          text: theAnime.getTitleRome() + "\n" + "\n",
                           style: GoogleFonts.roboto(
                               fontStyle: FontStyle.normal,
                               fontSize: 30,
                               color: Colors.black),
                         ),
                         TextSpan(
-                          text: "Status: " + widget.anime['status'] + "\n",
+                          text: "Status: " + theAnime.getStatus() + "\n",
                           style: GoogleFonts.roboto(
                               fontStyle: FontStyle.normal,
                               fontSize: 25,
                               color: Colors.red),
                         ),
                         TextSpan(
-                          text: "\t" + widget.anime['description'],
+                          text: "\t" + theAnime.getDesc(),
                           style: GoogleFonts.roboto(
                               fontStyle: FontStyle.normal,
                               fontSize: 15,
@@ -68,8 +93,8 @@ class _TitleState extends State<TitleImg> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => Cast(
-                            anime: widget.anime,
+                      builder: (_) => OfflineCast(
+                            id: widget.id,
                           )));
             },
             child: Container(

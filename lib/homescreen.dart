@@ -1,4 +1,5 @@
 import 'package:aniki_app/Widgets/airing.dart';
+import 'package:aniki_app/Widgets/favorites.dart';
 import 'package:aniki_app/Widgets/searchAnime.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Image.asset('images/LeadingIcon.png', fit: BoxFit.contain,),
+        leading: Image.asset('assets/images/LeadingIcon.png', fit: BoxFit.contain,),
         title: Text('Aniki'),
         elevation: 0.0,
         actions: <Widget>[
@@ -67,7 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
               }),
         ),
         if(selectedIndex == 0)
-          Text("Following")
+          Expanded(
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white),
+            child: favoriteTab(),
+          ),
+        )
         else if(selectedIndex == 1)
           Expanded(
           child: Container(
