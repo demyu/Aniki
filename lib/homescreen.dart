@@ -154,6 +154,7 @@ class DataSearch extends SearchDelegate<String> {
             }
           }
           voiceActors(language: JAPANESE) {
+            id
             name {
               full
             }

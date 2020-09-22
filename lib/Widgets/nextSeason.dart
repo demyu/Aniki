@@ -24,15 +24,17 @@ class NextSeasonState extends State<NextSeason> {
           "https://gblobscdn.gitbook.com/assets%2F-LPYQBx3Klbiq2P146cj%2F-LPw7ybOMUCMeaDQMKzN%2F-LPw9Yj6jRcemLmFI4x8%2Fbanner-entries4.png?alt=media&token=68ac3381-a911-4576-b95e-2fbd0ddbde83");
     }
   }
-
+  var response;
   String query;
 
   fetchData() async {
     DateTime now = new DateTime.now();
     DateTime date = new DateTime(now.year, now.month, now.day);
     String month;
+    int nextYear = now.year +1;
     String year =
-        now.month > 12 ? (now.year + 1).toString() : now.year.toString();
+        now.month > 8 ? nextYear.toString() : now.year.toString();
+        
     var curmonth = [
       "WINTER",
       "WINTER",
@@ -121,7 +123,7 @@ class NextSeasonState extends State<NextSeason> {
   """;
 
     var url = 'https://graphql.anilist.co';
-    var response = await http.post(url, body: {'query': query});
+    response = await http.post(url, body: {'query': query});
 
     if (response.statusCode >= 200 && response.statusCode <= 299) {
       setState(() {
@@ -139,7 +141,10 @@ class NextSeasonState extends State<NextSeason> {
 
   @override
   Widget build(BuildContext context) {
-    fetchData();
+    if(response == null){
+      fetchData();
+      return CircularProgressIndicator();
+    }else
 
     // TODO: implement build
     if (this.anime != null) {

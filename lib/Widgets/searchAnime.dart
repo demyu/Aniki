@@ -116,3 +116,4 @@ class _SearchAnimeState extends State<SearchAnime> {
     }
   }
 }
+//@Todo try catch
