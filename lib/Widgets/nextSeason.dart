@@ -6,12 +6,12 @@ import 'dart:io';
 import 'animePage.dart';
 import 'dart:convert';
 
-class Airing extends StatefulWidget {
+class NextSeason extends StatefulWidget {
   @override
-  AiringState createState() => AiringState();
+  NextSeasonState createState() => NextSeasonState();
 }
 
-class AiringState extends State<Airing> {
+class NextSeasonState extends State<NextSeason> {
   var anime;
 
   DateTime now = new DateTime.now();
@@ -32,7 +32,7 @@ class AiringState extends State<Airing> {
     DateTime date = new DateTime(now.year, now.month, now.day);
     String month;
     String year =
-        now.year.toString();
+        now.month > 12 ? (now.year + 1).toString() : now.year.toString();
     var curmonth = [
       "WINTER",
       "WINTER",
@@ -47,7 +47,13 @@ class AiringState extends State<Airing> {
       "FALL",
       "WINTER"
     ];
-    month = curmonth[now.month - 2];
+    var seasons = ["WINTER", "SPRING", "SUMMER", "FALL"];
+    month = curmonth[now.month %12];
+    for(int x =0; x<seasons.length; x++){
+      if(month == seasons[x]){
+        month = seasons[(x+1)%4];
+      }
+    }
     query = """
         query {
           Page(page: 1, perPage: 20){

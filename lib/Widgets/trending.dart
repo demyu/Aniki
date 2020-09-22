@@ -6,12 +6,12 @@ import 'dart:io';
 import 'animePage.dart';
 import 'dart:convert';
 
-class Airing extends StatefulWidget {
+class Trending extends StatefulWidget {
   @override
-  AiringState createState() => AiringState();
+  TrendingState createState() => TrendingState();
 }
 
-class AiringState extends State<Airing> {
+class TrendingState extends State<Trending> {
   var anime;
 
   DateTime now = new DateTime.now();
@@ -28,26 +28,6 @@ class AiringState extends State<Airing> {
   String query;
 
   fetchData() async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
-    String month;
-    String year =
-        now.year.toString();
-    var curmonth = [
-      "WINTER",
-      "WINTER",
-      "SPRING",
-      "SPRING",
-      "SPRING",
-      "SUMMER",
-      "SUMMER",
-      "SUMMER",
-      "FALL",
-      "FALL",
-      "FALL",
-      "WINTER"
-    ];
-    month = curmonth[now.month - 2];
     query = """
         query {
           Page(page: 1, perPage: 20){
@@ -57,7 +37,7 @@ class AiringState extends State<Airing> {
       lastPage
       hasNextPage
     }
-    media(type: ANIME, sort: POPULARITY_DESC, season: $month, seasonYear: $year){
+    media(type: ANIME, sort: POPULARITY_DESC){
       id
       title {
         romaji

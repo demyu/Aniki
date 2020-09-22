@@ -1,6 +1,8 @@
 import 'package:aniki_app/Widgets/airing.dart';
 import 'package:aniki_app/Widgets/favorites.dart';
+import 'package:aniki_app/Widgets/nextSeason.dart';
 import 'package:aniki_app/Widgets/searchAnime.dart';
+import 'package:aniki_app/Widgets/trending.dart';
 import 'package:flutter/material.dart';
 
 
@@ -82,9 +84,19 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
         else if(selectedIndex ==2 )
-          Text("Next Season")
+          Expanded(
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white),
+            child: NextSeason(),
+          ),
+        )
         else if(selectedIndex ==3)
-          Text("Trending")
+          Expanded(
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white),
+            child: Trending(),
+          ),
+        )
       ]),
     );
   }
