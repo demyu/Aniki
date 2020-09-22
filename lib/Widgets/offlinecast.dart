@@ -36,7 +36,6 @@ class OfflineCastState extends State<OfflineCast> {
         loadedCast.add(characterCast[x]);
       }
     }
-    print(va.length);
 
     for(int x=0; x<loadedCast.length; x++){
       for(int y=0; y <va.length; y++){

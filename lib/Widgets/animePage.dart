@@ -76,7 +76,6 @@ class _AnimePageState extends State<AnimePage> {
     }
     for(int x = 0; x<va.length; x++){
       dbids.add(va[x].getVaId());
-      print(va[x].getVaId());
     }
     for(int x =0; x<nonrepva.length; x++){
       if(!dbids.contains(nonrepva[x].getVaId())){
