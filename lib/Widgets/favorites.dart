@@ -5,11 +5,11 @@ import 'package:aniki_app/Classes/characters.dart';
 import 'package:aniki_app/Widgets/offlneAnimePage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-class favoriteTab extends StatefulWidget {
-  _favoriteTabState createState() => _favoriteTabState();
+class FavoritesTab extends StatefulWidget {
+  FavoritesTabState createState() => FavoritesTabState();
 }
 
-class _favoriteTabState extends State<favoriteTab>{
+class FavoritesTabState extends State<FavoritesTab>{
 
   final DBHelper db = DBHelper();
   List<AnimeClass> animeclass;
@@ -46,7 +46,7 @@ class _favoriteTabState extends State<favoriteTab>{
                   context,
                   MaterialPageRoute(
                       builder: (_) => OfflineAnimePage(
-                            id: ani.getAnimeId(),
+                            ani.getAnimeId(), this,
                           )));
             },
             child: Container(

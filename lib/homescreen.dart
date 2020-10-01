@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
           child: Container(
             decoration: BoxDecoration(color: Colors.white),
-            child: favoriteTab(),
+            child: FavoritesTab(),
           ),
         )
         else if(selectedIndex == 1)

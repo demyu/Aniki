@@ -46,7 +46,7 @@ class OfflineTitleImageState extends State<OfflineTitleImage> {
         Container(
             color: Colors.white,
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height + 120,
+            height: MediaQuery.of(context).size.height + 200,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [

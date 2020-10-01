@@ -5,6 +5,7 @@ import 'package:aniki_app/Classes/animeClass.dart';
 import 'package:aniki_app/Classes/characters.dart';
 import 'package:aniki_app/Widgets/RecommendedAnime.dart';
 import 'package:aniki_app/Widgets/bannerImage.dart';
+import 'package:aniki_app/Widgets/favorites.dart';
 import 'package:aniki_app/Widgets/offlineTitleImage.dart';
 import 'package:aniki_app/Widgets/title.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,9 @@ import 'dart:async';
 
 class OfflineAnimePage extends StatefulWidget {
   int id;
+  FavoritesTabState favoritesTabState;
 
-  OfflineAnimePage({this.id});
+  OfflineAnimePage(this.id, this.favoritesTabState);
 
   OfflineAnimePageState createState() => OfflineAnimePageState();
 }
@@ -70,7 +72,10 @@ class OfflineAnimePageState extends State<OfflineAnimePage> {
     db.deleteAnime(x);
     backup = characterCast;
     db.deleteCharacter(x);
-    load();
+    widget.favoritesTabState.load();
+    setState(() {
+    });
+    Navigator.pop(context);
   }
 
 
@@ -99,7 +104,6 @@ class OfflineAnimePageState extends State<OfflineAnimePage> {
         body: SingleChildScrollView(
           child: Column(children: [
             BannerImage(anime: theAnime.getConverImg()),
-            //Make offline titleImage
             OfflineTitleImage(id: widget.id),
           ]),
         ));
