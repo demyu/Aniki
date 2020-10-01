@@ -127,13 +127,16 @@ class _AnimePageState extends State<AnimePage> {
                 child: Text("Recommendations"),
               ),
             ),
+          
             Container(
               margin: EdgeInsets.symmetric(vertical: 20.0),
               height: 200.0,
               child: ListView.builder(
+                  
                   scrollDirection: Axis.horizontal,
                   itemCount: 4,
                   itemBuilder: (BuildContext context, int index) {
+                    try{
                     final poster = widget.anime['recommendations']['edges']
                             [index]['node']['mediaRecommendation']['coverImage']
                         ['large'];
@@ -159,8 +162,10 @@ class _AnimePageState extends State<AnimePage> {
                         ),
                       ),
                     );
+                    }catch(Exception){}
                   }),
             ),
+
           ]),
         ));
   }

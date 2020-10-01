@@ -112,7 +112,7 @@ class _SearchAnimeState extends State<SearchAnime> {
         },
       ));
     } else {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator());
     }
   }
 }
