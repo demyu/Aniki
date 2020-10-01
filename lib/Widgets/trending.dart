@@ -171,7 +171,10 @@ class TrendingState extends State<Trending> {
                             SizedBox(height: 5.0),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.45,
-                              child: Text(ani['title']['english'].toString(),
+                              child: Text(
+                                  ani['title']['english'] == null
+                                      ? ""
+                                      : ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 13.0,
@@ -187,7 +190,9 @@ class TrendingState extends State<Trending> {
         },
       ));
     } else {
-      return CircularProgressIndicator();
+      return Center(
+        child: CircularProgressIndicator(),
+      );
     }
   }
 }

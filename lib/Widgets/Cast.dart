@@ -23,10 +23,10 @@ class _CastState extends State<Cast> {
       body: ListView.builder(
         itemCount: widget.anime['characters']['edges'].length,
         itemBuilder: (BuildContext context, int index) {
+          try{
           final character = widget.anime['characters']['edges'][index]['node'];
           final voiceActor =
               widget.anime['characters']['edges'][index]['voiceActors'][0];
-
           return Container(
               margin: EdgeInsets.only(top: 5.0, bottom: 5, right: 1, left: 1),
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -99,6 +99,7 @@ class _CastState extends State<Cast> {
                       ]),
                 ],
               ));
+          }catch(Exception){}
         },
       ),
     );

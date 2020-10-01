@@ -35,7 +35,6 @@ class _AnimePageState extends State<AnimePage> {
     animeclass = await db.getAnimeList();
     characters = await db.getCharacterList();
     va = await db.getVaList();
-
     setState(() {
     });
   }

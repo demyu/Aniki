@@ -28,26 +28,6 @@ class AiringState extends State<Airing> {
   String query;
 
   fetchData() async {
-    DateTime now = new DateTime.now();
-    DateTime date = new DateTime(now.year, now.month, now.day);
-    String month;
-    String year =
-        now.year.toString();
-    var curmonth = [
-      "WINTER",
-      "WINTER",
-      "SPRING",
-      "SPRING",
-      "SPRING",
-      "SUMMER",
-      "SUMMER",
-      "SUMMER",
-      "FALL",
-      "FALL",
-      "FALL",
-      "WINTER"
-    ];
-    month = curmonth[now.month - 2];
     query = """
         query {
           Page(page: 1, perPage: 20){
@@ -57,7 +37,7 @@ class AiringState extends State<Airing> {
       lastPage
       hasNextPage
     }
-    media(type: ANIME, sort: POPULARITY_DESC, season: $month, seasonYear: $year){
+    media(type: ANIME, sort: POPULARITY_DESC, status_in: RELEASING){
       id
       title {
         romaji
@@ -191,7 +171,7 @@ class AiringState extends State<Airing> {
                             SizedBox(height: 5.0),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.45,
-                              child: Text(ani['title']['english'].toString(),
+                              child: Text(ani['title']['english'] == null ? "" : ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 13.0,
@@ -207,7 +187,7 @@ class AiringState extends State<Airing> {
         },
       ));
     } else {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator(),);
     }
   }
 }

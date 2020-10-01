@@ -134,9 +134,7 @@ class NextSeasonState extends State<NextSeason> {
         Map<String, dynamic> map = json.decode(y);
         this.anime = map['media'];
       });
-    } else {
-      print(response.body);
-    }
+    } 
   }
 
   @override
@@ -202,7 +200,7 @@ class NextSeasonState extends State<NextSeason> {
                             SizedBox(height: 5.0),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.45,
-                              child: Text(ani['title']['english'].toString(),
+                              child: Text(ani['title']['english'] == null ? "" : ani['title']['english'],
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 13.0,
@@ -218,7 +216,7 @@ class NextSeasonState extends State<NextSeason> {
         },
       ));
     } else {
-      return CircularProgressIndicator();
+      return Center(child: CircularProgressIndicator(),);
     }
   }
 }
